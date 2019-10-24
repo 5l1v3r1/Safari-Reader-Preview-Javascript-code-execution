@@ -1,4 +1,4 @@
-# Safari-Reader-Preview-Javascript-code-execution
+# Safari Reader Preview Javascript Code Execution
 
 Reading mode is a feature implemented in most of the browsers that allow users to read articles in a clutter-free view i.e rendering a page in a way that will be easy to read without any distraction.
 
