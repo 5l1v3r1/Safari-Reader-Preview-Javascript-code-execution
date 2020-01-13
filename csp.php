@@ -18,7 +18,6 @@
     <p>macOS is the operating system that powers every Mac. It lets you do things you simply can’t with other computers. That’s because it’s designed specifically for the hardware it runs on — and vice versa. macOS comes with an entire suite of beautifully designed apps. It works hand in hand with iCloud to keep photos, documents and other stuff up to date on all your devices. It makes your Mac work like magic with your iPhone and other Apple devices. And it’s been built from the ground up with privacy and security in mind.</p>
     <p>macOS is the operating system that powers every Mac. It lets you do things you simply can’t with other computers. That’s because it’s designed specifically for the hardware it runs on — and vice versa. macOS comes with an entire suite of beautifully designed apps. It works hand in hand with iCloud to keep photos, documents and other stuff up to date on all your devices. It makes your Mac work like magic with your iPhone and other Apple devices. And it’s been built from the ground up with privacy and security in mind.</p><br>
     <a href="https://www.apple.com/">Source: Apple.com</a><br>
-    <a href="jav&Tab;ascript:var a = window.open('','a');a.alert(a.opener.document.documentElement.innerHTML)">Evil link</a><br>
-
+    <a href="jav&Tab;ascript:var a = window.open('','a');a.alert(a.opener.document.getElementsByTagName('p')[0].innerHTML)">Evil link</a><br>
 </body> 
 </html> 
