@@ -1,4 +1,4 @@
-<?php header("content-security-policy: default-src");?>
+<?php header("Content-Security-Policy: default-src 'self'");?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
