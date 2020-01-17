@@ -2,7 +2,11 @@
 
 Reading mode is a feature implemented in most of the browsers that allow users to read articles in a clutter-free view i.e rendering a page in a way that will be easy to read without any distraction.
 
-Have you ever wonder how browsers achieve it? During the rendering process, browsers remove all unnecessary code, like javaScript, iframes, other embedding elements etc. 
+Here is a image that explains reader mode pretty well. 
+
+![1](https://github.com/c0d3G33k/Safari-Reader-Preview-Javascript-code-execution/blob/master/Screenshot%20at%20Jan%2014%2012-10-49.png)
+
+But have you ever wonder how browsers achieve it? During the rendering process, browsers remove all unnecessary code, like javaScript, iframes, other embedding elements etc.
 
 Let's try to run a sample code code that embeds a few elments to see how safari reacts
 ```
