@@ -1,14 +1,14 @@
 # Safari Reader Preview Javascript Code Execution
 
-Reading mode is a feature implemented in most of the browsers that allow users to read articles in a clutter-free view i.e rendering a page in a way that will be easy to read without any distraction.
+Reading mode is a feature implemented in most browsers that allow users to read articles in a clutter-free view i.e rendering a page in a way that will be easy to read without any distraction.
 
-Here is a image that explains reader mode pretty well. 
+Here is a image that explains reader mode pretty well.
 
 ![1](https://github.com/c0d3G33k/Safari-Reader-Preview-Javascript-code-execution/blob/master/Screenshot%20at%20Jan%2014%2012-10-49.png)
 
-But have you ever wonder how browsers achieve it? During the rendering process, browsers remove all unnecessary code, like javaScript, iframes, other embedding elements etc.
+Have you ever wondered how browsers achieve it? During the rendering process, browsers remove all unnecessary code, like javaScript, iframes, and other embedding elements. 
 
-Let's try to run a sample code code that embeds a few elments to see how safari reacts
+Let's try running a sample code code that embeds a few elements to see how Safari reacts
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -36,30 +36,30 @@ Let's try to run a sample code code that embeds a few elments to see how safari 
 And this is how our page rendered in safari
 ![1](https://github.com/c0d3G33k/Safari-Reader-Preview-Javascript-code-execution/blob/master/Screenshot%20at%20Oct%2017%2012-20-44.png)
 
-Now if you see a tiny lined button at the start of the address bar, that is what indicates whether the reader mode is available or not for the particular webpage. 
+Now you see a tiny lined button at the start of the address bar; it indicates whether the reader mode is available or not for the particular webpage. 
 Let's put the document in reading mode to see how it looks
 ![2](https://github.com/c0d3G33k/Safari-Reader-Preview-Javascript-code-execution/blob/master/Screenshot%20at%20Oct%2017%2012-28-52.png)
 
-As expected safari created a nice clutter-free view by modifying the DOM. Let's look at the DOM to check what exactly happened.
+As expected, safari created a nice clutter-free view by modifying the DOM. Let's look at the DOM to check what exactly happened.
 ![3](https://github.com/c0d3G33k/Safari-Reader-Preview-Javascript-code-execution/blob/master/Screenshot%20at%20Oct%2017%2012-32-11.png)
 
-And as you may notice `iframe`, `embed`, `object`, `script` and `onmouseover` is removed. 
+And as you may notice `iframe`, `embed`, `object`, `script`, and `onmouseover` is removed. 
 But what is interesting is a hyperlink that points to apple.com, so as you click on the link you will be redirected to apple.com.
 
-So since the anchor tag is allowed, the next idea that came to my mind is to use javascript URI
-Let's modify the last few lines our sample code and to see what happens.
+Since the anchor tag is allowed, the next idea that came to my mind is to use javascript URI
+Let's modify the last few lines in our sample code and see what happens.
 
 ```
 <a href="https://www.apple.com/">Source: Apple.com</a><br>
 <a href="javascript:alert(1)">Evil link</a>   
 ```
-Now safari removed the link that points to javascript URI while the link to apple.com is same as can be seen in below snapshot
+Now, safari removed the link that points to javascript URI while the link to apple.com is same, as can be seen in below snapshot
 
 ![4](https://github.com/c0d3G33k/Safari-Reader-Preview-Javascript-code-execution/blob/master/Screenshot%20at%20Oct%2017%2012-45-29.png)
 
-After I came across this blogpost [Safari Reader UXSS](https://alf.nu/SafariReaderUXSS) from `Erling ` which shows a bypass that URLs with `javascript:` are filtered, but ones with `JaVASCRiPT:` or  `javaScript:` are not.
+After I came across this blogpost [Safari Reader UXSS](https://alf.nu/SafariReaderUXSS) from `Erling `, which shows a bypass that URLs with `javascript:` are filtered, but ones with `JaVASCRiPT:` or  `javaScript:` are not.
 
-So this behaviour is already fixed by the safari team, Let's try to bypass it again. first thing first is using HTML5 entities to build a link with javascript URI, the first and most obvious payload will be 
+This behaviour is already fixed by the safari team, let's try to bypass it again. One should note that using HTML5 entities to build a link with javascript URI, the first and most obvious payload will be 
 ```
 <a href="jav&Tab;ascript:alert(1)">Evil link</a>
 ```
@@ -67,11 +67,11 @@ And it worked!
 
 ![5](https://github.com/c0d3G33k/Safari-Reader-Preview-Javascript-code-execution/blob/master/Screenshot%20at%20Oct%2017%2013-15-27.png)
 
-But, if you try to click on the link it will not work. even there no error in the console as displayed in below image
+But, if you try to click on the link it will not work. even there is no error in the console as displayed in below image
 
 ![6](https://github.com/c0d3G33k/Safari-Reader-Preview-Javascript-code-execution/blob/master/Screenshot%20at%20Oct%2017%2013-20-32.png)
 
-Seems there is another challenge for me. Next, the idea is to find out what is happening here. 
+Seems like there was another challenge for me. Next, the idea is to find out what is happening here. 
 
 To find out why our javascript code is not working we can define an invalid javascript code to identify whether the browser is interpreting it or not. 
 Let's again modfiy a few lines in our sample code as follows
@@ -83,9 +83,9 @@ And as you can see below it throws a nice error
 
 ![7](https://github.com/c0d3G33k/Safari-Reader-Preview-Javascript-code-execution/blob/master/Screenshot%20at%20Oct%2017%2013-30-53.png)
 
-Now what we can conclude is that somehow browser is identifying certain javascript code and will not allows us to execute it. 
+What we can conclude is that somehow the browser is identifying certain javascript code and does not allow us to execute it. 
 
-I have tested several functions during this time and figured out that at least `window.open` is working so let's modify our sample code and check the results
+I have tested several functions during this time and figured out that at least `window.open` is working. Let's modify our sample code and check the results
 
 Modfied code
 ```
@@ -95,7 +95,7 @@ Modfied code
 
 ![8](https://github.com/c0d3G33k/Safari-Reader-Preview-Javascript-code-execution/blob/master/Screenshot%20at%20Oct%2017%2016-15-21.png)
 
-As you can see the javascript code is executing in context to `safari-reader` which is a pseudo-protocol used in safari reading mode. 
+As you can see the javascript code is executing in context to `safari-reader`, which is a pseudo-protocol used in safari reading mode. 
 
 We can also do funny stuff to disturb the user to break safari's promise.
 Let's again remodify the last few lines and see how it works
@@ -103,12 +103,14 @@ Let's again remodify the last few lines and see how it works
 <a href="https://www.apple.com/">Source: Apple.com</a><br>
 <a href="jav&Tab;ascript:var p = document.createElement('p');p.innerHTML='<marquee scrollamount=25><img src=https://cdn.pixabay.com/photo/2017/10/26/20/00/pumpkin-2892303_1280.jpg height=400 width=400></marquee>';document.documentElement.appendChild(p)">Evil link</a><br>
 ```
-and it will create a annoying moving pumkin image on the screen as displayed in the below screenshot
+and it will create an annoying moving pumkin image on the screen as displayed in the below screenshot
 
 ![9](https://github.com/c0d3G33k/Safari-Reader-Preview-Javascript-code-execution/blob/master/Screenshot%20at%20Oct%2017%2016-54-35.png)
 
 Check the video proof of concept 
 ![10](https://youtu.be/sd5dX-2a97E)
+
+### CSP Bypass
 
 This vulnerability will also be useful to bypass CSP checks in safari. You can imagine a situation when an attacker is able to inject XSS payload on a perfectly CSP implemented page eg: 
 ```
@@ -140,4 +142,3 @@ Now if you try to click on the inject link you will get a CSP violation error. H
 
 Check the video proof of concept 
 ![11](https://youtu.be/sd5dX-2a97E)
-
