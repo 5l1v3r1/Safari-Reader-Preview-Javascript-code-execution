@@ -108,7 +108,7 @@ and it will create an annoying moving pumkin image on the screen as displayed in
 ![9](https://github.com/c0d3G33k/Safari-Reader-Preview-Javascript-code-execution/blob/master/Screenshot%20at%20Oct%2017%2016-54-35.png)
 
 Check the video proof of concept 
-![10](https://youtu.be/sd5dX-2a97E)
+![10](https://github.com/c0d3G33k/Safari-Reader-Preview-Javascript-code-execution/blob/master/Screen-Recording-2019-10-17-at-4.54.52-PM_1.gif)
 
 ### CSP Bypass
 
@@ -141,4 +141,4 @@ This vulnerability will also be useful to bypass CSP checks in safari. You can i
 Now if you try to click on the inject link you will get a CSP violation error. However, if you put the same document in reading mode and then try to click again on the injected link, it will execute the javascript code to steal the content from the current page.  
 
 Check the video proof of concept 
-![11](https://youtu.be/sd5dX-2a97E)
+![11](https://github.com/c0d3G33k/Safari-Reader-Preview-Javascript-code-execution/blob/master/safari-csp-bypass_1.gif)
